@@ -446,7 +446,7 @@ The Event object identifies when something has just happened, either since the l
 Properties:
 
 <table><tr><th>Property</th><th>JavaScript Key</th><th>Type</th><th>Description</th></tr>
-<tr><td>Event Type</td><td>name</td><td>String</td><td>Label for the type of event that's taken place, e.g. 'conversion','signup'.</td></tr>
+<tr><td>Event Type</td><td>type</td><td>String</td><td>Label for the type of event that's taken place, e.g. 'conversion','signup'.</td></tr>
 <tr><td>Event Time</td><td>time</td><td>String</td><td>String representation of the time at which this event occurred.</td></tr>
 <tr><td>Event Cause</td><td>cause</td><td>String</td><td>Description of what caused this event, e.g. 'idle for 5 minutes'.</td></tr>
 <tr><td>Event Effect</td><td>effect</td><td>String</td><td>Description for any user-facing activity that happens as a result of this event, e.g. 'popup shown'.</td></tr>

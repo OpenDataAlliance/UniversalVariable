@@ -28,6 +28,7 @@ universal_variable can contain any of the following properties:
 	<tr><td>listing</td><td><a href="#listing">Listing object</a></td><td>Multiple products that are present on a page, excluding recommendations (e.g. search results, or a product category page).</td></tr>
 	<tr><td>recommendation</td><td><a href="#recommendation">Recommendation object</a></td><td>Products that are recommended to the user on this page.</td></tr>
 	<tr><td>events</td><td><a href="#eventlist">EventList object</a></td><td>Identifies events that have just occurred.</td></tr>
+	<tr><td>referral</td><td><a href="#referral">Referral object</a></td><td>Identifies any referrers to this page, such as diplay ads or affiliate networks.</td></tr>
 	<tr><td>version</td><td>String</td><td>Which version of this standard is being used, currently '1.1.0'.</td></tr>
 </table>
 
@@ -322,7 +323,7 @@ Properties:
 <table><tr><th>Property</th><th>JavaScript Key</th><th>Type</th><th>Description</th></tr>
 <tr><td>Transaction ID</td><td>order_id</td><td>String</td><td>A unique ID for this transaction.</td></tr>
 <tr><td>Transaction Currency</td><td>currency</td><td>String</td><td><i>Mandatory.  </i>The <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> code for the currency this transaction's costs are denominated in.</td></tr>
-<tr><td>Transaction Payment Type</td><td>payment_type<td></td><td>String</td><td>Payment method, e.g. 'Visa','PayPal','Voucher'.</td></tr>
+<tr><td>Transaction Payment Type</td><td>payment_type</td><td>String</td><td>Payment method, e.g. 'Visa','PayPal','Voucher'.</td></tr>
 <tr><td>Transaction Price</td><td>subtotal</td><td>Number</td><td>The transaction amount, excluding shipping or discounts.</td></tr>
 <tr><td>Transaction Includes Tax</td><td>subtotal_include_tax</td><td>Boolean</td><td>Indicates whether Transaction Price includes tax.</td></tr>
 <tr><td>Transaction Voucher Code</td><td>voucher</td><td>String</td><td>Voucher code entered.</td></tr>
@@ -533,4 +534,23 @@ window.universal_variable = {
 }
  ```
 
+ ## Referral
+
+ The Referral object can be used to describe what led a user to this page.
+
+ Properties:
+
+<table><tr><th>Property</th><th>JavaScript Key</th><th>Type</th><th>Description</th></tr>
+<tr><td>Referral Category</td><td>category</td><td>String</td><td><i>Mandatory. </i> The type of referral - supported values are: ```paid_search, vertical_search, email, affiliate, social, display, offline, other```</td></tr>
+<tr><td>Referral Network</td><td>network</td><td>String</td><td>The network via which this referral was received, such as 'Bing' or 'Google' for paid search, 'Commission Junction' or 'LinkShare' for an affiliate referral, 'Facebook' or 'LinkedIn' for a social network, 'Criteo' for a display ad.</td></tr>
+<tr><td>Referral Channel</td><td>channel</td><td>String</td><td>An offline medium through which a campaign was run, e.g. 'magazine'.</td></tr>
+<tr><td>Referral Campaign</td><td>campaign</td><td>String</td><td>Used to identify a specific product promotion or strategic campaign, e.g. 'august_mailshot'.</td></tr>
+<tr><td>Referral Ad group</td><td>ad_group</td><td>String</td><td>If the referral is from an ad, this identifies the specific ad group to which the ad belongs.</td></tr>
+<tr><td>Referral Match type</td><td>match_type</td><td>String</td><td>For paid search referrals, the reason for which the paid search ad was shown, e.g. 'keyword_match', 'broad_match'.</td></tr>
+<tr><td>Referral Search Keywords</td><td>search_keywords</td><td>String</td><td>For search referrals, the keywords used, e.g. 'running shoes'.</td></tr>
+<tr><td>Referral Autotagging ID</td><td>gclid</td><td>String</td><td>For paid search referrals, the ID associated with this click-through (e.g. the 'gclid' from Google AdWords).</td></tr>
+<tr><td>Referral Affiliate ID</td><td>affiliate_id</td><td>String</td><td>If an affiliate referral, the ID of the affiliate, as specified by the affiliate network.</td></tr>
+<tr><td>Referral Affiliate Publisher</td><td>publisher</td><td>String</td><td>If an affiliate referral, the ID of the publisher of the affiliate link (e.g. a third-party web site).</td></tr>
+<tr><td>Referral Retargeting</td><td>retargeting</td><td>Boolean</td><td>For a display ad referral, whether the ad was placed using retargeting.</td></tr>
+</table>
 

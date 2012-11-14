@@ -581,6 +581,7 @@ Our standard currently recognises the following string values for [Referral](#re
 <tr><td>social</td><td>Referrals from sites that are considered to be social networks, for example <a href="http://www.twitter.com">Twitter</a> or <a href="http://www.pinterest.com">Pinterest</a>.</td></tr>
 <tr><td>display</td><td>Referrals from ads displayed on a web site - whether text, image, interactive or video.  Includes retargeting ads.</td></tr>
 <tr><td>offline</td><td>Referrals driven by offline advertising campaigns - such as catalogues, billboards or postal campaigns - where a URL or QR code is included in the offline ad. </td></tr>
+<tr><td>other</td><td>Any referral that isn't described by the categories above.</td></tr>
 </table>
 
 

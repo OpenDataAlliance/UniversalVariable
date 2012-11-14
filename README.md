@@ -541,7 +541,7 @@ The Referral object can be used to describe what led a user to this page.
 Properties:
 
 <table><tr><th>Property</th><th>JavaScript Key</th><th>Type</th><th>Description</th></tr>
-<tr><td>Referral Category</td><td>category</td><td>String</td><td><i>Mandatory. </i> The type of referral - supported values are: <code>paid_search, vertical_search, email, affiliate, social, display, offline, other</code></td></tr>
+<tr><td>Referral Category</td><td>category</td><td>String</td><td><i>Mandatory. </i> The type of referral - supported values are: 'paid_search', 'vertical_search', 'email', 'affiliate', 'social', 'display', 'offline', 'other'</td></tr>
 <tr><td>Referral Network</td><td>network</td><td>String</td><td>The network via which this referral was received, such as 'Bing' or 'Google' for paid search, 'Commission Junction' or 'LinkShare' for an affiliate referral, 'Facebook' or 'LinkedIn' for a social network, 'Criteo' for a display ad.</td></tr>
 <tr><td>Referral Channel</td><td>channel</td><td>String</td><td>An offline medium through which a campaign was run, e.g. 'magazine'.</td></tr>
 <tr><td>Referral Campaign</td><td>campaign</td><td>String</td><td>Used to identify a specific product promotion or strategic campaign, e.g. 'august_mailshot'.</td></tr>

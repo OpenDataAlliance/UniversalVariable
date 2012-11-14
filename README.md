@@ -1,4 +1,4 @@
-# Open Data Alliance Universal Variable Specification Version 1.1.0
+# Open Data Alliance Universal Variable Specification Version 1.2.0
 
 This specification describes a way to structure information commonly found on commercial web sites into a JavaScript object in a web page.  This object can then be read by code running in a user's web browser (e.g. JavaScript 'tags', browser extensions) or by other consumers of web pages (e.g. automatic crawlers).
 
@@ -29,7 +29,7 @@ universal_variable can contain any of the following properties:
 	<tr><td>recommendation</td><td><a href="#recommendation">Recommendation object</a></td><td>Products that are recommended to the user on this page.</td></tr>
 	<tr><td>events</td><td><a href="#eventlist">EventList object</a></td><td>Identifies events that have just occurred.</td></tr>
 	<tr><td>referral</td><td><a href="#referral">Referral object</a></td><td>Identifies any referrers to this page, such as diplay ads or affiliate networks.</td></tr>
-	<tr><td>version</td><td>String</td><td>Which version of this standard is being used, currently '1.1.0'.</td></tr>
+	<tr><td>version</td><td>String</td><td>Which version of this standard is being used, currently '1.2.0'.</td></tr>
 </table>
 
 ## Only declare what's necessary
@@ -50,7 +50,7 @@ window.universal_variable = {
 	page: {
 		category: "home"
 	},
-	version: "1.1.0"
+	version: "1.2.0"
 }
 ```
 
@@ -64,10 +64,10 @@ This universal_variable JavaScript object must be created before any browser scr
 
 ## Version
 
-Set this to the string "1.1.0" to indicate that this version of the specification is being used.
+Set this to the string "1.2.0" to indicate that this version of the specification is being used.
 
 ```javascript
-window.universal_variable.version = "1.1.0";
+window.universal_variable.version = "1.2.0";
 ```
 
 ## Page
@@ -534,23 +534,37 @@ window.universal_variable = {
 }
  ```
 
- ## Referral
+## Referral
 
- The Referral object can be used to describe what led a user to this page.
+The Referral object can be used to describe what led a user to this page.
 
- Properties:
+Properties:
 
 <table><tr><th>Property</th><th>JavaScript Key</th><th>Type</th><th>Description</th></tr>
-<tr><td>Referral Category</td><td>category</td><td>String</td><td><i>Mandatory. </i> The type of referral - supported values are: ```paid_search, vertical_search, email, affiliate, social, display, offline, other```</td></tr>
+<tr><td>Referral Category</td><td>category</td><td>String</td><td><i>Mandatory. </i> The type of referral - supported values are: <code>paid_search, vertical_search, email, affiliate, social, display, offline, other</code></td></tr>
 <tr><td>Referral Network</td><td>network</td><td>String</td><td>The network via which this referral was received, such as 'Bing' or 'Google' for paid search, 'Commission Junction' or 'LinkShare' for an affiliate referral, 'Facebook' or 'LinkedIn' for a social network, 'Criteo' for a display ad.</td></tr>
 <tr><td>Referral Channel</td><td>channel</td><td>String</td><td>An offline medium through which a campaign was run, e.g. 'magazine'.</td></tr>
 <tr><td>Referral Campaign</td><td>campaign</td><td>String</td><td>Used to identify a specific product promotion or strategic campaign, e.g. 'august_mailshot'.</td></tr>
-<tr><td>Referral Ad group</td><td>ad_group</td><td>String</td><td>If the referral is from an ad, this identifies the specific ad group to which the ad belongs.</td></tr>
+<tr><td>Referral Ad group</td><td>ad_group</td><td>String</td><td>If the referral is from an ad, this identifies the ad group it belongs to.</td></tr>
 <tr><td>Referral Match type</td><td>match_type</td><td>String</td><td>For paid search referrals, the reason for which the paid search ad was shown, e.g. 'keyword_match', 'broad_match'.</td></tr>
 <tr><td>Referral Search Keywords</td><td>search_keywords</td><td>String</td><td>For search referrals, the keywords used, e.g. 'running shoes'.</td></tr>
-<tr><td>Referral Autotagging ID</td><td>gclid</td><td>String</td><td>For paid search referrals, the ID associated with this click-through (e.g. the 'gclid' from Google AdWords).</td></tr>
+<tr><td>Referral Autotagging ID</td><td>autotagging_id</td><td>String</td><td>For paid search referrals, the ID associated with this click-through (e.g. the 'gclid' from Google AdWords).</td></tr>
 <tr><td>Referral Affiliate ID</td><td>affiliate_id</td><td>String</td><td>If an affiliate referral, the ID of the affiliate, as specified by the affiliate network.</td></tr>
-<tr><td>Referral Affiliate Publisher</td><td>publisher</td><td>String</td><td>If an affiliate referral, the ID of the publisher of the affiliate link (e.g. a third-party web site).</td></tr>
+<tr><td>Referral Affiliate Publisher</td><td>affiliate_publisher</td><td>String</td><td>If an affiliate referral, the ID of the publisher of the affiliate link (e.g. a third-party web site).</td></tr>
 <tr><td>Referral Retargeting</td><td>retargeting</td><td>Boolean</td><td>For a display ad referral, whether the ad was placed using retargeting.</td></tr>
 </table>
+
+Example:
+
+```javascript
+window.universal_variable = {
+	referral: {
+		category: 'affiliate',
+		network: 'LinkShare',
+		affiliate_id : 'AFF123',
+		affiliate_publisher: 'PUB123'
+
+	}
+}
+ ```
 

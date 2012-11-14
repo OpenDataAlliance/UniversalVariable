@@ -541,7 +541,7 @@ The Referral object can be used to describe what led a user to this page.
 Properties:
 
 <table><tr><th>Property</th><th>JavaScript Key</th><th>Type</th><th>Description</th></tr>
-<tr><td>Referral Category</td><td>category</td><td>String</td><td><i>Mandatory. </i> The type of referral - supported values are: 'paid_search', 'vertical_search', 'email', 'affiliate', 'social', 'display', 'offline', 'other'</td></tr>
+<tr><td>Referral Category</td><td>category</td><td>String</td><td><i>Mandatory. </i> The type of referral - supported values are: 'paid_search', 'organic_search', vertical_search', 'email', 'affiliate', 'social', 'display', 'offline', 'other'.  These categories are defined <a href="#referral-category-definitions">below</a>.</td></tr>
 <tr><td>Referral Network</td><td>network</td><td>String</td><td>The network via which this referral was received, such as 'Bing' or 'Google' for paid search, 'Commission Junction' or 'LinkShare' for an affiliate referral, 'Facebook' or 'LinkedIn' for a social network, 'Criteo' for a display ad.</td></tr>
 <tr><td>Referral Channel</td><td>channel</td><td>String</td><td>An offline medium through which a campaign was run, e.g. 'magazine'.</td></tr>
 <tr><td>Referral Campaign</td><td>campaign</td><td>String</td><td>Used to identify a specific product promotion or strategic campaign, e.g. 'august_mailshot'.</td></tr>
@@ -567,4 +567,20 @@ window.universal_variable = {
 	}
 }
  ```
+
+### Referral category definitions
+
+Our standard currently recognises the following string values for [Referral](#referral) categories:
+
+<table><tr><th>Value</th><th>Description</th></tr>
+<tr><td>paid_search</td><td>Referrals from sponsored search results, such as Google's <a href="http://adwords.google.com">AdWords</a>.</td></tr>
+<tr><td>organic_search</td><td>Referrals from a search engine's normal, i.e. non-sponsored results.</td></tr>
+<tr><td>vertical_search</td><td>Referrals from a domain specific or 'vertical' search engine.  These search engines perform a specific type of search - such as <a href="http://www.travelsupermarket.com">TravelSupermarket</a> which searches for flights and holidays. </td></tr>
+<tr><td>email</td><td>Any referral which arises from clicking a link in an email.</td></tr>
+<tr><td>affiliate</td><td>Referrals due to an affiliate network such as <a href="http://www.cj.com">Commission Junction</a>.</td></tr>
+<tr><td>social</td><td>Referrals from sites that are considered to be social networks, for example <a href="http://www.twitter.com">Twitter</a> or <a href="http://www.pinterest.com">Pinterest</a>.</td></tr>
+<tr><td>display</td><td>Referrals from ads displayed on a web site - whether text, image, interactive or video.  Includes retargeting ads.</td></tr>
+<tr><td>offline</td><td>Referrals driven by offline advertising campaigns - such as catalogues, billboards or postal campaigns - where a URL or QR code is included in the offline ad. </td></tr>
+</table>
+
 

@@ -322,7 +322,7 @@ Properties:
 <table><tr><th>Property</th><th>JavaScript Key</th><th>Type</th><th>Description</th></tr>
 <tr><td>Transaction ID</td><td>order_id</td><td>String</td><td>A unique ID for this transaction.</td></tr>
 <tr><td>Transaction Currency</td><td>currency</td><td>String</td><td><i>Mandatory.  </i>The <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> code for the currency this transaction's costs are denominated in.</td></tr>
-<tr><td>Transaction Payment Type</td><td>payment_type<td></td><td>String</td><td>Payment method, e.g. 'Visa','PayPal','Voucher'.</td></tr>
+<tr><td>Transaction Payment Type</td><td>payment_type</td><td>String</td><td>Payment method, e.g. 'Visa','PayPal','Voucher'.</td></tr>
 <tr><td>Transaction Price</td><td>subtotal</td><td>Number</td><td>The transaction amount, excluding shipping or discounts.</td></tr>
 <tr><td>Transaction Includes Tax</td><td>subtotal_include_tax</td><td>Boolean</td><td>Indicates whether Transaction Price includes tax.</td></tr>
 <tr><td>Transaction Voucher Code</td><td>voucher</td><td>String</td><td>Voucher code entered.</td></tr>

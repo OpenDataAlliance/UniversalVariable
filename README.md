@@ -76,8 +76,8 @@ The Page object describes the current page.
 Properties (all optional):
 
 <table><tr><th>Property</th><th>JavaScript Key</th><th>Type</th><th>Description</th></tr>
-<tr><td>Page Category</td><td>category</td><td>String</td><td>A short description of the type of page, e.g. 'home', 'product', 'category', 'search', 'basket', 'checkout', 'confirmation'.</td></tr>
-<tr><td>Page Subcategory</td><td>subcategory</td><td>String</td><td>A short description of the type of page, with more granularity than the category, e.g. 'landing', 'checkout-stage1', 'gifts'.  <br>Use only if a category has been defined.</td></tr>
+<tr><td>Page Category</td><td>category</td><td>String</td><td>A short description of the type of page, e.g. 'home', 'product', 'category', 'search', 'basket', 'checkout', 'confirmation'.  The page's position in the site hierarchy should not be used in this field, however it could be used as the subcategory.</td></tr>
+<tr><td>Page Subcategory</td><td>subcategory</td><td>String</td><td>A short description of the instance of this type of page, e.g. 'landing', 'checkout-stage1'.  Site hierarchies can be used, e.g. 'Womens - Shoes - Running Shoes'.<br>Use only if a category has been defined.</td></tr>
 <tr><td>System Environment</td><td>environment</td><td>String</td><td>A name for the environment which is creating this Universal Variable data, e.g. 'development', 'testing', 'production'.</td></tr>
 <tr><td>Page Variation</td><td>variation</td><td>String</td><td>If serving multiple versions of this page during testing, specify a variation name. e.g. 'original','newstyle'</td></tr>
 <tr><td>Page Revision</td><td>revision</td><td>String</td><td>If a site's pages implement versioning, state a revision here, e.g. '1.1'.</td></tr>
@@ -88,8 +88,8 @@ For example:
 ``` javascript
 window.universal_variable = {
 	page: {
-		category: "product",
-		subcategory: "Mens Shirts",
+		category: "product",                     // the page is of type Product
+		subcategory: "Mens - Shirts - Formal",   // specifically, the Product page for mens formal shirts
 		environment: "production",
 		variation: "Original",
 		revision: "1.1"

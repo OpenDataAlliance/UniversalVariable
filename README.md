@@ -13,6 +13,21 @@ Example:
 window.universal_variable = {};
 ```
 
+
+## Version
+
+Set this to the string "1.1.0" to indicate that this version of the specification is being used.
+
+```javascript
+window.universal_variable.version = "1.1.0";
+```
+
+
+## Implementation Considerations
+
+This universal_variable JavaScript object must be created before any browser scripts that try to access it.  It is *imperative to use this structure*, as this ensures that the values are present on the page when a script tries to access them.  If the variables are created further down the page, they will not be picked up.  
+
+
 ## The universal_variable object
 
 universal_variable can contain any of the following properties:
@@ -53,21 +68,7 @@ window.universal_variable = {
 }
 ```
 
-## Implementation Considerations
-
-This universal_variable JavaScript object must be created before any browser scripts that try to access it.  
-
-
-
-
-
-## Version
-
-Set this to the string "1.1.0" to indicate that this version of the specification is being used.
-
-```javascript
-window.universal_variable.version = "1.1.0";
-```
+## Universal Variable Object Definitions
 
 ## Page
 

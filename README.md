@@ -27,6 +27,19 @@ window.universal_variable.version = "1.1.0";
 
 This universal_variable JavaScript object must be created before any browser scripts that try to access it.  It is *imperative to use this structure*, as this ensures that the values are present on the page when a script tries to access them.  If the variables are created further down the page, they will not be picked up.  
 
+## A word on privacy
+
+This standard includes methods to represent personal data, such as users' names and addresses. Like many other parts of the standard, inclusion of this information is optional.
+
+Before you implement universal variable, decide which personal information you wish to include. Then, ensure you only include personal information where necessary, for example:
+
+* a User object (including the user's name) could be populated in pages served to a signed-in user
+* a Transaction object (including a postal address) could be populated in a confirmation or receipt page, served to a customer on completion of a retail transaction.
+
+### Why include personal data in universal variable?
+
+The intention of this standard is to reproduce information that may already be displayed on-screen in a more machine-readable format for a better user experience, not to disclose personal information to anyone who shouldn't see it. Remember that any data in universal variable will only be accessible by scripts loaded on that particular page, and the use of personal data falls under your applicable data protection laws as normal.
+
 
 ## The universal_variable object
 

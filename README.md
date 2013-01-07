@@ -1,4 +1,4 @@
-# Open Data Alliance Universal Variable Specification Version 1.1.0
+# Open Data Alliance Universal Variable Specification Version 1.1.1
 
 This specification describes a way to structure information commonly found on commercial web sites into a JavaScript object in a web page.  This object can then be read by code running in a user's web browser (e.g. JavaScript 'tags', browser extensions) or by other consumers of web pages (e.g. automatic crawlers).
 
@@ -16,11 +16,11 @@ window.universal_variable = {};
 
 ## Version
 
-Set this to the string "1.1.0" to indicate that this version of the specification is being used.
+Set this to indicate that this version of the specification is being used.
 
 ```javascript
 window.universal_variable = {
-	"version" : "1.1.0"
+	"version" : "1.1.1"
 	...
 }
 ```
@@ -30,7 +30,7 @@ window.universal_variable = {
 
 **DO**:
 
-* **Read the specification carefully and make sure you know exactly what value to store against each key.**  Because our specification is very wide-ranging, you may find similar (but different) properties under different keys - for example, a Product’s `unit_sale_price` is its price including discounts, but a Product’s `unit_price` does not include discounts.
+* **Read the specification carefully and make sure you know exactly what value to store against each key.**  Because our specification is very wide-ranging, you may find similar (but different) properties under different keys - for example,  a Product’s `unit_price` does not include discounts, but its `unit_sale_price` does.
 * **Use valid JSON:** this includes enclosing strings in quotes and avoiding trailing commas.  You may find it helpful to use an online tool such as JSONLint.com to validate your code.
 * **Use the correct JavaScript object types** as defined in the specification - for example, prices should always be unquoted JavaScript numbers.
 * **Declare `window.universal_variable` as high up in the page as possible**, so it can be used by other JavaScript code.
@@ -41,7 +41,7 @@ window.universal_variable = {
 * **Instantiate more parts of the Universal Variable object than you need** - for instance, there is probably no need to declare a completed Transaction on your site’s home page.
 * **Re-declare the whole Universal Variable when you only want to add to the existing `window.universal_variable` object**, or you’ll lose what has already been declared!
 * **Omit mandatory fields**, such as a LineItem’s Quantity field.
-* **Omit additional fields required in the specification**: for example, to declare a Product’s `unit_sale_price`, its `currency` must also be declared.  
+* **Omit additional fields required in the specification**: for example, to declare a Product’s `unit_sale_price`, its `currency` must also be declared.
 
 
 ## A word on privacy
@@ -73,7 +73,7 @@ universal_variable can contain any of the following properties:
 	<tr><td>listing</td><td><a href="#listing">Listing object</a></td><td>Multiple products that are present on a page, excluding recommendations (e.g. search results, or a product category page).</td></tr>
 	<tr><td>recommendation</td><td><a href="#recommendation">Recommendation object</a></td><td>Products that are recommended to the user on this page.</td></tr>
 	<tr><td>events</td><td><a href="#eventlist">EventList object</a></td><td>Identifies events that have just occurred.</td></tr>
-	<tr><td>version</td><td>String</td><td>Which version of this standard is being used, currently '1.1.0'.</td></tr>
+	<tr><td>version</td><td>String</td><td>Which version of this standard is being used.</td></tr>
 </table>
 
 ## Only declare what's necessary
@@ -94,7 +94,7 @@ window.universal_variable = {
 	"page": {
 		"category": "home"
 	},
-	"version": "1.1.0"
+	"version": "1.1.1"
 }
 ```
 
@@ -190,9 +190,9 @@ There are many possible types of product on the Web - here, we first list proper
 <tr><td>Product Subcategory</td><td>subcategory</td><td>String</td><td>A short description of this type of product, with more granularity than the category, e.g. 'trainers'. <br>Use only if a category has been defined.</td></tr>
 <tr><td>Product Linked Products</td><td>linked_products</td><td>Array of <a href="#product">Product</a> objects</td><td>Products related to this one through well-defined relationships (e.g. a product in the same range from the same manufacturer), not generated based on the output of recommendation algorithms.</td></tr>
 <tr><td>Product Currency</td><td>currency</td><td>String</td><td>The <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> code for the currency used for this product's prices.</td></tr>
-<tr><td>Product Price</td><td>unit_sale_price</td><td>Number</td><td>The price for a single unit of this product actually paid by a customer, taking into account any sales and promotions.  <i>Requires Product Currency to be declared.</i></td></tr>
-<tr><td>Product Price Excluding Promotions</td><td>unit_price</td><td>Number</td><td>The price of a single unit of this product, not taking into account discounts and promotions. <i>Requires Product Currency and Product Price to be declared.</i></td></tr>
-
+<tr><td>Product Price</td><td>unit_sale_price</td><td>Number</td><td>The price for a single unit of this product actually paid by a customer, taking into account any sales and promotions. <b>Note:</b> If a promotion involves selling the same product with different prices in the same transaction (e.g. ten units of a product are in a basket, where the first two receive a 10% discount, and the rest are discounted by 20%), implement the 'least discounted' version of the product using this Product object, and implement the further discount by using the `total_discount` property of the <a href="#lineitem">LineItem</a> object, which forms part of <a href="#basket">Baskets</a> and <a href="#transaction">Transactions</a>.<i>Requires Product Currency to be declared.</i></td></tr>
+<tr><td>Product Price Excluding Promotions</td><td>unit_price</td><td>Number</td><td>The price of a single unit of this product, not taking into account discounts and promotions.  <i>Requires Product Currency and Product Price to be declared.</i></td></tr>
+<tr><td>Product Reviews</td><td>reviews</td><td>Array of <a href="#review">Review</a> objects</td><td>Reviews that have been written (by customers or staff) about this Product.</td></tr>
 </table>
 
 ### Additional properties for products requiring stock keeping
@@ -259,7 +259,8 @@ Properties:
 <table><tr><th>Property</th><th>JSON key</th><th>Type</th><th>Description</th></tr>
 <tr><td>LineItem Product</td><td>product</td><td><a href="#product">Product</a> object</td><td><i>Mandatory.</i> The product which has been added to the basket or transaction.</td></tr>
 <tr><td>LineItem Quantity</td><td>quantity</td><td>Number</td><td><i>Mandatory.</i> The number of this product that has been added to the basket or transaction.</td></tr>
-<tr><td>LineItem Subtotal</td><td>subtotal</td><td>Number</td><td>Total cost of this LineItem, including tax, excluding shipping.</td></tr>
+<tr><td>LineItem Subtotal</td><td>subtotal</td><td>Number</td><td>Total cost of this LineItem, including tax, excluding shipping and discounts.</td></tr>
+<tr><td>LineItem Total Discount</td><td>total_discount</td><td>Number</td><td>The total discount applied when buying the specified quantity of this product (taking into account any quantity-specific product offers, such as 'buy one get one free').  The total amount paid for this LineItem should be <i>Subtotal - Total Discount</i>.</td></tr>
 </table>
 
 Example:
@@ -269,17 +270,19 @@ Example:
 	"product": {
 			"url": "http://www.example.com/product?=ABC123", 
 			"name": "ABC Trainers",
-			"unit_price": 30.00
+			"unit_price": 30.00,
+			"unit_sale_price": 25.00,
 			"currency": "GBP"
 		},
 	"quantity": 1,
-	"subtotal": 30.00
+	"subtotal": 30.00,
+	"total_discount": 5.00
 }
 ```
 
 ## Basket
 
-The Basket object describes the current state of the a user's shopping basket or cart.
+The Basket object describes the current state of the a user's shopping basket or cart.  It should be populated on any web page that displays basket information - this may include 'product' or 'category' pages, as well as pages that provide a detailed basket listing.
 
 Properties:
 
@@ -346,12 +349,13 @@ Example:
 
 ## Transaction
 
-The Transaction object describes a completed purchase.  If possible, this object should only be present when the transaction has just been completed and is no longer modifiable.
+The Transaction object describes a completed purchase, and could be displayed on a confirmation or receipt page.
 
 Properties:
 
 <table><tr><th>Property</th><th>JSON key</th><th>Type</th><th>Description</th></tr>
 <tr><td>Transaction ID</td><td>order_id</td><td>String</td><td>A unique ID for this transaction.</td></tr>
+<tr><td>Transaction Returning Status</td><td>returning</td><td>Boolean</td><td>False if this is the <b>first time</b> a user has been served this Transaction, i.e. it has just happened.  True if this Transaction has happened some time ago and its details are being reviewed.  For example, the Transaction object on a page served to a user when they have just completed a purchase should read 'False', but if the user returns to this page, for example when clicking a link sent in a confirmation email, it should read 'True'.</td></tr>
 <tr><td>Transaction Currency</td><td>currency</td><td>String</td><td><i>Mandatory.  </i>The <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> code for the currency this transaction's costs are denominated in.</td></tr>
 <tr><td>Transaction Payment Type</td><td>payment_type</td><td>String</td><td>Payment method, e.g. 'Visa','PayPal','Voucher'.</td></tr>
 <tr><td>Transaction Price</td><td>subtotal</td><td>Number</td><td>The transaction amount, excluding shipping or discounts.</td></tr>
@@ -563,5 +567,34 @@ window.universal_variable = {
 	}
 }
  ```
+
+## Review
+
+ The Review object models a review of a [Product](#product).
+
+Properties:
+
+<table><tr><th>Property</th><th>JSON key</th><th>Type</th><th>Description</th></tr>
+<tr><td>Review Body</td><td>body</td><td>String</td><td>Body of this review.</td></tr>
+<tr><td>Review Rating</td><td>rating</td><td>String</td><td>How this review rates the Product.  For example, a score such as '5'.</td></tr>
+</table>
+
+Example:
+
+```javascript
+{
+	"product": {
+			"url": "http://www.example.com/product?=ABC123", 
+			"name": "ABC Trainers",
+			"unit_sale_price": 25.00
+			"currency": "GBP",
+			"reviews": [ {"body": "These are excellent trainers!", "rating": "5"},
+						 {"body": "Pretty good", "rating": "4"} ]
+		},
+	"quantity": 1,
+	"subtotal": 30.00,
+	"total_discount": 5.00
+}
+```
 
 

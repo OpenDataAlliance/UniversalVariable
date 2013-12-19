@@ -1,3 +1,14 @@
+## We've moved!
+
+We've been working hard to update the Universal Variable Specification. Version 1.1.1 (January 2013 release) is frozen below - if you've been directed here by one of our technology partners, be aware their documentation may refer to this version. 
+
+Qubit are taking this specification forward at the [Universal Data Layer microsite](http://tools.qubitproducts.com/uv/developers/)  which includes:
+
+* Our latest specification and release notes
+* A useful validation tool to flag up issues in your code
+* Best practice guides and support
+
+
 # Open Data Alliance Universal Variable Specification Version 1.1.1
 
 This specification describes a way to structure information commonly found on commercial web sites into a JavaScript object in a web page.  This object can then be read by code running in a user's web browser (e.g. JavaScript 'tags', browser extensions) or by other consumers of web pages (e.g. automatic crawlers).

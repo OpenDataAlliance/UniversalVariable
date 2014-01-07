@@ -8,6 +8,7 @@ Qubit are taking this specification forward at the [Universal Data Layer microsi
 * A useful validation tool to flag up issues in your code
 * Best practice guides and support
 
+[http://tools.qubitproducts.com/uv/developers/](http://tools.qubitproducts.com/uv/developers/)
 
 # Open Data Alliance Universal Variable Specification Version 1.1.1
 
